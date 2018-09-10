@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : home
     Created on : 02/09/2018, 17:01:26
     Author     : MARIA
@@ -8,27 +8,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <%@include file="cabecalho.jsp" %>
+        <title>Home</title>
     </head>
     <body>
-        <a href="form.jps">Home</a>
-        
-        
-        <h1>Projeto02_Grupo02</h1>
-        <h2>Equipe:</h2>
-        <h3>Anderson Reis</h3>
-        <h3>Ana Paula Otiai</h3>
-        <h3>Paola Claudino</h3>
-        
-        <p>Este projeto é para automação de Calculos.
-        </p>
-        <p>Neste projeto estamos colocando em prática o que aprendemos
-            em aula na Faculdade de Tecnlogia de 
-            Praia Grande
-        </p>
-        <p>Desde já deixamos nosso cordial agradecimento ao professor Ricardo Pupo
-            por sua dedicação e disposição em nos ensinar.
-        </p>
+        <%@include file="menu.jsp" %>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <h1 class="mb-4">Projeto 02 - Grupo 02</h1>
+                    <p>Aplicação web para cálculo de sistemas de amortização constante, americana e tabela price.</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item active">Membros da Equipe </li>
+                        <li class="list-group-item">Ana Paula Otiai</li>
+                        <li class="list-group-item">Anderson Reis</li>
+                        <li class="list-group-item">Paolla Gil Claudino</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

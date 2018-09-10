@@ -14,7 +14,7 @@
     </head>
     <body>
         <%@include file="menu.jsp" %>
-        <div class="container pt-4">
+        <div class="container py-5">
             <div class="row">
                 <div class="col-md-12 col-lg-4">
                     <h1>Tabela Price</h1>
