@@ -104,5 +104,6 @@
                 %>
             </div>
         </div>
+        <%@include file="rodape.jsp" %>
     </body>
 </html>

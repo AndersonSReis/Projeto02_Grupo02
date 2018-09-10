@@ -110,6 +110,7 @@
 } catch (Exception e) {%>
 <h3>Favor colocar valores válidos.</h3>
 <%}%>
+<%@include file="rodape.jsp" %>
 </body>
 </html>
 

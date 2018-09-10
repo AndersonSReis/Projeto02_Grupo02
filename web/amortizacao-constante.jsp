@@ -56,5 +56,6 @@
             }
         %>
         <h1><u><%= emprestim%></u></h1>
+                <%@include file="rodape.jsp" %>
     </body>
 </html>
