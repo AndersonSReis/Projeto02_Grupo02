@@ -39,7 +39,6 @@
                             int n = Integer.parseInt(request.getParameter("n"));
                             double ve = Double.parseDouble(request.getParameter("ve"));
                             double i = (Double.parseDouble(request.getParameter("i"))) / 100;
-                            double j = 0, vp = 0;
                             double tj = 0;
                             double tp = 0;
 
@@ -64,68 +63,71 @@
 
                             <tr>
                                 <th>
-                                    <%= ct%> <%-- Meses--%>
+                                    <%-- Meses--%>
+                                    <%= ct%> 
                                 </th>
+                                <%-- Saldo devedor--%>
                                 <td><% if (ct == n) {%>
                         <center><%="-"%> </center>
                             <%} else {%>
-                        <center><%= ve%></center>  <%-- Saldo devedor--%>
+                        <center><%= ve%></center>  
                             <%}%>
                         </td>
                         <td>
+                            <%--Amortizacao--%>
                             <%if (ct == n) {%>
-                        <center><%= ve%> </center>  <%--Amortizacao--%>
+                        <center><%= ve%> </center>  
                             <%} else {%>
                         <center><%="-"%></center>
                             <%}%>
                         </td>
                         <td>
+                            <%--Juros--%>
                             <%if (ct == 0) {%>
                         <center>
                             <%="-"%>
                         </center>
                         <%} else {%>
                         <center>
-                            <% j = i * n * ve;%>
-                            <% j = (i / 100) * ve; %>
                             <%tj = i * ve * n;%>
-                            <%= i * ve%> <%--Juros--%>
+                            <%= i * ve%>
                         </center>
 
                         <%}%>
                         </td>
                         <td>
+                            <%--Prestacao--%>
                             <%if (ct == 0) {%>
                         <center> <%="-"%>    </center>
 
-                        <% } else {%>
+                        <% } else if (ct<n) {%>
                         <center>
-                            <% vp = (i * n * ve) + tj; %>
-                            <% vp = ve + tj;%>
-                            <%= (i * ve)%><%--Prestacao--%>
+                            <% tp = ve + tj;%>
+                            <%= (i * ve)%>
                         </center>
-
+                            <%} else {%>
+                            <center><%=ve+(i*ve)%></center>
                         <%}%>
                         </td>
                         </tr>
                         <%}%>
-                        </tbody>
+                        </body>
                         <tfoot>
                             <tr>
                                 <th>Total</th>
                                 <td></td>
-                                <td><%=ve%></td>
-                                <td><%=tj%></td>
-                                <td><%=vp%></td>
+                                <td><center><%=ve%></center></td>
+                    <td><center><%=tj%></center></td>
+                    <td><center><%=tp%></center></td>
                                 <td></td>
                             </tr>
                         </tfoot>
                     </table>
                     <%} else {%>
-                    <h3>Favor colocar valores válidos.</h3>
+                    <h2></h2>
                     <%}
                     } catch (Exception e) {%>
-                    <h3>Favor colocar valores válidos.</h3>
+                    <h2></h2>
                     <%}%>
                 </div></div>
         </div>
