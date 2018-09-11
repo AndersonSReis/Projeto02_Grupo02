@@ -106,7 +106,7 @@
                             </body>
                         <tfoot>
                             <tr>
-                                <th>Total</th>
+                                <th>TOTAL</th>
                                 <td class="text-center">-</td>
                                 <td class="text-center"><%=moeda.format(ve)%></td>
                                 <td class="text-center"><%=moeda.format(tj)%></</td>
