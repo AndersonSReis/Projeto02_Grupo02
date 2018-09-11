@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>Taxa de juros (%): </label>
-                            <input class="form-control" type="number" name="taxa" required>
+                            <input class="form-control" type="number" step="0.01" name="taxa" required>
                         </div>
                         <div class="form-group">
                             <label>Tempo (Meses): </label>
@@ -57,43 +57,66 @@
                         <thead>
                             <tr>
                                 <th>Mês</th>
-                                <th>Prestação</th>
-                                <th>Juros</th>
-                                <th>Amortização</th>
-                                <th>Saldo Devedor</th>
+                                <th class="text-center">Prestação</th>
+                                <th class="text-center">Juros</th>
+                                <th class="text-center">Amortização</th>
+                                <th class="text-center">Saldo Devedor</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%            for (int i = 0; i <= tempo; i++) {
                                     if (i == 0) {
                                         saldo = emprestimo;
-                                    } else {
-                                        pmt = emprestimo * (dividendo / divisor);
-                                        juros = saldo * taxa;
-                                        amortizacao = pmt - juros;
-                                        saldo = saldo - amortizacao;
-                                        totalj = totalj + juros;
-                                        totalamor = totalamor + amortizacao;
-                                    }
-
                             %>
                             <tr>
                                 <td><%=i%></td>
-                                <td><%=moeda.format(pmt)%></td>
-                                <td><%=moeda.format(juros)%></td>
-                                <td><%=moeda.format(amortizacao)%></td>
-                                <td><%=moeda.format(saldo)%></td>
+                                <td class="text-center">-</td>
+                                <td class="text-center">-</td>
+                                <td class="text-center">-</td>
+                                <td class="text-center"><%=moeda.format(saldo)%></td>
                             </tr>
                             <%
+                            } else if (i == tempo) {
+                                pmt = emprestimo * (dividendo / divisor);
+                                juros = saldo * taxa;
+                                amortizacao = pmt - juros;
+                                saldo = saldo - amortizacao;
+                                totalj = totalj + juros;
+                                totalamor = totalamor + amortizacao;
+                            %>
+                            <tr>
+                                <td><%=i%></td>
+                                <td class="text-center"><%=moeda.format(pmt)%></td>
+                                <td class="text-center"><%=moeda.format(juros)%></td>
+                                <td class="text-center"><%=moeda.format(amortizacao)%></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <%} else {
+                                pmt = emprestimo * (dividendo / divisor);
+                                juros = saldo * taxa;
+                                amortizacao = pmt - juros;
+                                saldo = saldo - amortizacao;
+                                totalj = totalj + juros;
+                                totalamor = totalamor + amortizacao;
+                            %>
+                            <tr>
+                                <td><%=i%></td>
+                                <td class="text-center"><%=moeda.format(pmt)%></td>
+                                <td class="text-center"><%=moeda.format(juros)%></td>
+                                <td class="text-center"><%=moeda.format(amortizacao)%></td>
+                                <td class="text-center"><%=moeda.format(saldo)%></td>
+                            </tr>
+                            <%
+                                    }
                                 }
                             %>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>TOTAL</th>
-                                <td><%=moeda.format(pmt * tempo)%></td>
-                                <td><%=moeda.format(totalj)%></td>
-                                <td><%=moeda.format(totalamor)%></td>
+                                <td class="text-center"><%=moeda.format(pmt * tempo)%></td>
+                                <td class="text-center"><%=moeda.format(totalj)%></td>
+                                <td class="text-center"><%=moeda.format(totalamor)%></td>
                                 <td class="text-center">-</td>
                             </tr>
                         </tfoot>
