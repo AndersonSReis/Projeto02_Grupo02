@@ -3,7 +3,7 @@
     Created on : 09/09/2018, 17:05:48
     Author     : Ana Paula Otiai
 --%>
-
+<%@page import="java.text.NumberFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,10 @@
                             <button type="submit" class="btn btn-lg btn-block btn-primary" nome="Calculo">Calcular</button>
                         </div>
                     </form></div>
+                
                     <%try {
+                        
+                         NumberFormat moeda = NumberFormat.getCurrencyInstance();
                             int n = Integer.parseInt(request.getParameter("n"));
                             double ve = Double.parseDouble(request.getParameter("ve"));
                             double i = (Double.parseDouble(request.getParameter("i"))) / 100;
@@ -47,36 +50,33 @@
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Mês</th>
-                                <th>Saldo Devedor</th>
-                                <th>Amortização</th>
-                                <th>Juros</th>
-                                <th>Prestação</th>
+                                <th><center>Mês</center></th>
+                                <th><center>Saldo Devedor</center></th>
+                                <th><center>Amortização</center></th>
+                                <th><center>Juros</center></th>
+                                <th><center>Prestação</center></th>
                             </tr>
                         </thead>
                         <tbody>
+                            
                             <% for (int ct = 0; ct <= n; ct++) {%>
-
-                            <%
-
-                            %>
 
                             <tr>
                                 <th>
                                     <%-- Meses--%>
-                                    <%= ct%> 
+                                    <%= ct %> 
                                 </th>
                                 <%-- Saldo devedor--%>
                                 <td><% if (ct == n) {%>
                         <center><%="-"%> </center>
                             <%} else {%>
-                        <center><%= ve%></center>  
+                        <center><%=moeda.format(ve)%></center>  
                             <%}%>
                         </td>
                         <td>
                             <%--Amortizacao--%>
                             <%if (ct == n) {%>
-                        <center><%= ve%> </center>  
+                        <center><%= moeda.format(ve)%> </center>  
                             <%} else {%>
                         <center><%="-"%></center>
                             <%}%>
@@ -90,7 +90,7 @@
                         <%} else {%>
                         <center>
                             <%tj = i * ve * n;%>
-                            <%= i * ve%>
+                            <%=moeda.format(i * ve)%>
                         </center>
 
                         <%}%>
@@ -103,10 +103,10 @@
                         <% } else if (ct<n) {%>
                         <center>
                             <% tp = ve + tj;%>
-                            <%= (i * ve)%>
+                            <%= moeda.format(i * ve)%>
                         </center>
                             <%} else {%>
-                            <center><%=ve+(i*ve)%></center>
+                        <center><%=moeda.format(ve+(i*ve))%></center>
                         <%}%>
                         </td>
                         </tr>
@@ -116,9 +116,9 @@
                             <tr>
                                 <th>Total</th>
                                 <td></td>
-                                <td><center><%=ve%></center></td>
-                    <td><center><%=tj%></center></td>
-                    <td><center><%=tp%></center></td>
+                                <td><center><%=moeda.format(ve)%></center></td>
+                                <td><center><%=moeda.format(tj)%></center></td>
+                                <td><center><%=moeda.format(tp)%></center></td>
                                 <td></td>
                             </tr>
                         </tfoot>
